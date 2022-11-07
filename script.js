@@ -1,6 +1,6 @@
 /* Задание на урок:
 
-1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
+1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на :
 'Сколько фильмов вы уже посмотрели?'
 
 2) Создать объект personalMovieDB и в него поместить такие свойства:
@@ -21,7 +21,7 @@
 
 Проверить, чтобы все работало без ошибок в консоли */
 
-// 'use strict';
+    //"use strict";
 
 const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
@@ -63,19 +63,44 @@ console.log(personalMovieDB);
 
 //Свич работает на строгое сравнение
 
-const num = 50;
+// const num = 50;
 
-switch (num) {
-    case 49:
-       console.log('Неверно');
-       break;
-    case 100:
-        console.log('Много');
-        break;
-    case 50:
-        console.log('В точку');
-        break;
-    default :
-        console.log('Не в этот раз');
-        break;
+// switch (num) {
+//     case 49:
+//        console.log('Неверно');
+//        break;
+//     case 100:
+//         console.log('Много');
+//         break;
+//     case 50:
+//         console.log('В точку');
+//         break;
+//     default :
+//         console.log('Не в этот раз');
+//         break;
+// }
+
+
+/////////////////////////////////
+
+// let num = 50;
+
+// // while (num <= 55){
+// //     console.log(num);
+// //     num++;
+// // }
+
+// do {
+//     console.log(num);
+//     num++;
+// }
+// while (num <65);
+
+for (let i = 1; i < 12; i++ ) {
+    if (i === 6){
+        // break;
+        continue;     //6 перепрыгнул
+    }
+
+    console.log (i);
 }
