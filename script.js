@@ -3,19 +3,19 @@
 // 13 Условия                                       50
 // 14 ЦИКЛЫ                                         133
 // 16 Функции                                       191
-// 19 Callback- функиции                            300
-// функция которая выполнится когда другая закончит свое выполнение
-// Объекты, деструктуризация объектов               352
+// 17 Методы и свойства строк и чисел               300
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+// 19 Callback- функиции                            372
+// 20 Объекты, деструктуризация объектов            425
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-
-
-
-
-
-////
-
-
-
+// 21 Масивы и псевдомасивы     
+// 22 Передача по ссылке или по значению, Spred оператор      650
+// Получение элементов со страницы                  787
+// https://learn.javascript.ru/css-selectors
+// 29 Действия с элементами на странице             833
+// 31 События и их обработчики                      911
+// https://oddler.ru/blog/i63
+// справочник по событиям js
 
 
 
@@ -290,11 +290,83 @@
 
 // const calc = (a, b) => a + b;
 
-// console.log(calc(3, 7));
+// console.log(calc(3, 7));   //> 10
 
 ///////////////////////////////////////////////////////
 
 
+
+
+// 17 Методы и свойства строк и чисел
+
+// Методы - это вспомогательные функции
+// Свойства - это вспомогательные значения
+
+// const str = "test";
+// console.log(str.length);            //> 4
+// // -----------------------------
+// const arr = [1, 2, 4];
+// console.log(arr.length);            //> 3
+// -----------------------------
+
+// Методы, в отличае от своиств, вызываются круглыми скобками ()
+
+// const str = "test";
+// console.log(str[2]);            //> s
+// -----------------------------
+
+// const str = "teST";
+// console.log(str.toUpperCase());          //> TEST   не забываем вызвать метод ()
+// console.log(str.toLowerCase());          //> test
+// console.log(str);                        //> teST 
+// // -----------------------------
+// //             0123456789
+// const fruit = "Some fruit";
+
+// console.log(fruit.indexOf("fruit"));     //> 5     номер начала
+// console.log(fruit.indexOf("q"));         //> -1    означает такой буквы нет
+// -----------------------------
+
+// 3 Метода взаимодействия со строками
+
+// slice
+// substring
+// substr
+
+//              0123456789111
+// const log = "Hello world";
+
+// console.log(log.slice(6, 11));               //> world
+// console.log(log.slice(6));                   //> world   с чего начинается и до конца
+// console.log(log.slice(-5, -1));              //> worl
+// -----------------------------
+// console.log(log.substring(6, 11));              //> world
+// console.log(log.substring(-6, 11));             //> Hello world    -6 также как 0
+// -----------------------------
+// console.log(log.substr(6, 5));                  //> world   
+// console.log(log.substr(6, 2));                  //> wo        2 показывает сколько надо вырезать  
+// -----------------------------
+
+
+// const num = 12.2;
+
+// console.log(Math.round(num));                    //> 12           округление до ближайшего целого
+
+// -----------------------------
+
+// const test = "12.2px";
+
+// console.log(parseInt(test));                         //> 12    уже число а не строка
+// console.log(parseFloat(test));                       //> 12.2
+// -----------------------------
+
+// от себячка
+// const test = "12.2px";
+// const numTest = parseFloat(test);
+
+// console.log(Math.round(numTest));                   //> 12    Ура!
+// -----------------------------
+///////////////////////////////////////////////////////////////
 
 
 //  19 Callback- функция которая выполнится когда другая закончит свое выполнение
@@ -345,11 +417,12 @@
 //     callback();
 // }
 
-// learn('JavaScript', done);                        //> Я учу: JavaScript, Я прошел этот урок
+// learn('JavaScript', done());                        //> Я учу: JavaScript, Я прошел этот урок
 // -----------------------------
 //////////////////////////////////////////////////////////////////////
 
-// Объекты, деструктуризация объектов
+
+// 20 Объекты, деструктуризация объектов
 
 // const options = {
 //     name: 'test',
@@ -491,6 +564,473 @@
 
 
 
+// Масивы и псевдомасивы
+
+// const arr = [1, 2, 3, 6, 8];
+
+// arr.pop();                     // удаляет последний элемент
+
+// console.log(arr);              //> [ 1, 2, 3, 6 ] 
+// -----------------------------
+
+// const arr = [1, 2, 3, 6, 8];
+
+// arr.push(10);                     // добавляет последний элемент (10)
+
+// console.log(arr);                //> [ 1, 2, 3, 6, 8, 10 ]
+// -----------------------------
+
+// const arr = [1, 2, 3, 6, 8];
+
+// for (let i = 0; i < arr.length; i++) {
+//     console.log(arr[i]);                //> 1, 2, 3, 6, 8
+// }
+// -----------------------------
+
+// const arr = [1, 2, 3, 6, 8];                  // ВОЗМОЖНОСТЬ ИСПОЛЬЗОВАТЬ breack, continue
+
+// for (let value of arr) {
+//     console.log(value);                     //> 1, 2, 3, 6, 8
+// }
+// -----------------------------
+
+// const arr = [1, 2, 3, 6, 8];
+
+// console.log(arr.length);                     //> 5  последний индекс +1
+
+// arr[99] = 0;
+
+// console.log(arr.length);                     //> 100 последний индекс +1
+
+// console.log(arr);                            //> [ 1, 2, 3, 6, 8, <94 empty items>, 0 ]
+// -----------------------------
+
+// const arr = [1, 2, 3, 6, 8];
+
+// arr.forEach(function(item, i, arr) {
+//     console.log(`${i}: ${item} внутри массива ${arr}`);       //>0: 1  внутри массива 1,2,3,6,8
+// });                                                           //>1: 2  внутри массива 1,2,3,6,8
+//                                                               //>2: 3  внутри массива 1,2,3,6,8
+//                                                               //>3: 6  внутри массива 1,2,3,6,8
+//                                                               //>4: 8  внутри массива 1,2,3,6,8
+// ----------------------------- 
+
+// const str = prompt("", "");                    //  Работает propt только в редакторе
+// const products = str.split(", ");              //  Разделям массив поле запятой
+// console.log(products.join('+=+ '));  // Склеиваем массив через +=+ (или что угодно) после запятой  
+// ----------------------------- 
+
+// const aaa = ['uuv', 'kjfjj', 'asad','gjjfgj'];
+
+// aaa.sort();
+
+// console.log(aaa);                     //>   [ 'asad', 'gjjfgj', 'kjfjj', 'uuv' ]
+// // ----------------------------- 
+
+// const arr = [2, 13, 26, 8, 10];
+
+// arr.sort();
+
+// console.log(arr);                  //> [ 10, 13, 2, 26, 8 ]   сортирует как строки
+// -----------------------------
+
+// const arr = [2, 13, 26, 8, 10];
+// arr.sort(compareNum);
+// console.log(arr);                    //> [ 2, 8, 10, 13, 26 ]    как надо
+
+// function compareNum(a, b) {
+//     return a - b;
+// }
+// -----------------------------
+
+// Псевдомассивы - это массивы не имеющие методов, просто хранят инфорацию
+
+///////////////////////////////////////////////////////////////////////
+
+// 22 Передача по ссылке или по значению, Spred оператор
+
+// let a = 5,
+//     b = a;
+
+// b = b +5;
+
+// console.log(b);          //> 10
+// -----------------------------
+
+// const obj = {
+//     a: 5,
+//     b: 1
+// };
+
+// const copy = obj;
+
+// copy.a = 10;
+
+// console.log(copy);             //{ a: 10, b: 1 }   не клонизуется а получат ссылку
+// console.log(obj);              //{ a: 10, b: 1 }   копия по ссылке меняет объект
+// -----------------------------
+
+// Поверхностное клонирование
+
+// function copy(mainObj) {          //создаем функцию калькулятор
+//     let objCopy = {};
+
+//     let key;
+//     for (key in mainObj) {
+//         objCopy[key] = mainObj[key];
+//     }
+//     return objCopy;
+// }
+
+// const numbers = {
+//     a: 2,
+//     b: 5,
+//     c: {
+//         x: 7,
+//         y: 4
+//     }
+// };
+
+// const newNumbers = copy(numbers);
+// //                                 поменялось не затрагивая основного
+// newNumbers.a = 10;          //{ a: 10, b: 5, c: { x: 20, y: 4 } }
+// newNumbers.c.x =20;         //{ a: 2, b: 5, c: { x: 20, y: 4 } }  (х) не должен был поменятся
+// //                                                  (7)поменялось по ссылке( поверхностное клонирование)
+// console.log(newNumbers);
+
+// console.log(numbers);
+// -----------------------------
+// Объединение объектов
+
+// const numbers = {
+//     a: 2,
+//     b: 5,
+//     c: {
+//         x: 7,
+//         y: 4
+//     }
+// };
+
+// const add = {
+//     d: 17,
+//     e: 20
+// };
+// //                                             |          numbers             ||     add     |
+// console.log(Object.assign(numbers, add));    //{ a: 2, b: 5, c: { x: 7, y: 4 }, d: 17, e: 20 }
+//          ---------------------------      
+// -----------------------------
+//  Еще способ клонирования
+
+// const add = {
+//     d: 17,
+//     e: 20,
+// };
+
+// const clone = (Object.assign({}, add));
+
+// clone.d = 20;                         // поверхностное клонирование
+
+// console.log(add);                  // { d: 17, e: 20 }
+
+// console.log(clone);                // { d: 20, e: 20 }
+// -----------------------------
+
+// const oldArray = ['a', 'b', 'c'];
+// const newArray = oldArray.slice();
+
+// newArray[1] = 'adsadafsaf';
+// console.log(newArray);                  // [ 'a', 'adsadafsaf', 'c' ]
+// console.log(oldArray);                  // [ 'a', 'b', 'c' ]
+
+// -----------------------------
+
+//   Оператор разворота
+
+// const video = ['youtube', 'vimeo', 'rutub'],
+//       blogs = ['worldpress', 'livejornal', 'blogger'],
+//       internet = [...video, ...blogs, 'vk', 'facebook'];
+// //                ------------------
+// console.log(internet);              //все будет одним массивом
+// -----------------------------
+
+// const num = [2, 5, 7];
+
+// function log(a, b, c) {
+//  console.log(a);
+//  console.log(b);
+//  console.log(c);
+// }
+
+// log(...num);           //  2, 5, 7    // объеденили
+// -----------------------------
+
+// const array = ["a", "b"];
+
+// const newArray = [...array];
+
+// console.log(newArray);            // [ 'a', 'b' ]
+// -----------------------------
+
+// const q = {
+//     one: 1,
+//     two: 2
+// };
+
+// const newObj = {...q};
+
+// console.log(q);
+// console.log(newObj);        //{ one: 1, two: 2 }
+
+//////////////////////////////////////////////////////////////////////////
+
+
+// Получение элементов со страницы
+
+// id - на странице пишется один раз
+
+
+// const box = document.getElementById('box');
+
+// console.log(box);
+
+// const btns = document.getElementsByTagName('button');
+
+// console.log(btns);     // HTML коллекция
+
+// первый способ получение элемента
+
+// const btns = document.getElementsByTagName('button')[1];  // получили вторую кнопку
+
+//  второй способ
+
+// console.log(btns[1]);             // получили вторую кнопку
+
+// console.log(btns[0]);             // если элемент всего один
+//         ---------
+// -----------------------------
+
+// const circles = document.getElementsByClassName('circle'); // получение по классу
+
+// console.log(circles);
+// -----------------------------
+
+// более лучший способ. имеет метод forEach
+
+// const hearts = document.querySelectorAll('.heart');   // у классов обязательно ставим точку
+// console.log(hearts[1]);
+// применим функцию
+
+// hearts.forEach(item => {
+//     console.log(item);     // получаем все элементы
+// });
+// -----------------------------
+
+// const oneHeart = document.querySelector('.heart');
+// console.log(oneHeart);                              // получаем только один первый элемент
+////////////////////////////////////////////////////////////
+
+
+// 29 Действия с элементами на странице
+
+// const box = document.getElementById('box'),       // по id можно один раз на странице
+//       btns = document.getElementsByTagName('button'),
+//       circles = document.getElementsByClassName('circle'),
+//       hearts = document.querySelectorAll('.heart'),
+//       oneHeart = document.querySelector('.heart'),
+//       wrapper = document.querySelector('.wrapper');
+
+//     Можно document заменить на wrapper!!!
+
+
+// box.style.backgroundColor = 'blue';  // инлайн стили самые важные, перебивают все остальные
+// box.style.width = '500px';
+// box.style.cssText = 'background-color: blue; width: 500px;';  // второй способ cssText
+//        --------
+
+// box.style.cssText = `background-color: blue; width: ${num}px;`; // ставим бектики
+// -----------------------------
+
+// btns[1].style.borderRadius = '100%';
+
+// // circles.style.backgroundColor = 'red';   // ошибка , псевдомасив не поймет
+// circles[0].style.backgroundColor = 'red';   
+
+// for (let i = 0; i < hearts.length; i++) {        // используется редко
+//     hearts[i].style.backgroundColor = 'green';
+// }
+
+// hearts.forEach(item => {                     // метод forEach
+//     item.style.backgroundColor = 'green';
+// });
+
+// -----------------------------
+
+// const div = document.createElement('div');  // элемент создан и существует только внутри javaScripta
+
+// div.classList.add('black');     // ВАЖНО! Создаем класс новому элементу
+
+// Редактируем созданный класс (способ 1)
+
+// div.innerHTML = "<h1>Hello</h1>";     //можно загрузить сруктуру HTML
+
+// способ 2
+
+// div.textContent = '<h1></h1>Hello';  // работает только с текстом
+
+// div.insertAdjacentElement("afterend", '<h2>AAA</h2>');  //вставляет перед, после, внутри и снаружи
+//                         afterbegin
+//                         beforebegin
+//                         beforeend     
+
+// document.body.append(div);                // добавляет новый элемент
+// document.querySelector('.wrapper').append(div); // вставляет элемент в конец класса
+// wrapper.append(div);                               // тоже самое но с объявлением wrapper
+// const text = document.createTextNode(' Тут был я'); //  используется редко
+// -----------------------------
+
+// wrapper.prepend(div);                              // вставляет в начало
+
+// -----------------------------
+
+// wrapper.before(div);                              // поставит перд
+
+// wrapper.after(div);                                  // поставит после
+
+// hearts[1].after(div);                        // поставит после
+
+// hearts[1].before(div);                     // поставит перд    последнее слово дороже перврго
+// -----------------------------
+
+// btns[1].remove();                                 // удаляет элемент
+// -----------------------------
+
+// hearts[1].replaceWith(circles[0]);             // заменяет элемент
+
+///////////////////////////////////////////////////////////////
+
+// 31 События и их обработчики
+
+// обработчики событий
+
+// <button onclick="alert('Clik')">Нажми меня</button>  // надо комбинировать кавычки */
+// такой скрипт не используют
+
+// const btn = document.querySelector('button');
+
+// btn.onclick = function () {
+//     alert('Click');
+// };                                   // такой обработчик не удаляется
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('click', () => {
+//     alert('Click');
+// });
+
+// btn.addEventListener('click', () => {
+//     alert('Second Click');
+// });                                         // можно делать много действмй
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('mouseenter', () => {
+//     console.log('Hover');
+// });
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('mouseenter', (e) => {
+//     console.log(e.target);                     // получаем доступ к элементу
+// });
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('mouseenter', (e) => {
+//     console.log(e.target);
+//     e.target.style.cssText = 'background: red;';    // применили стили при наведении    // получаем доступ к элементу
+// });
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// btn.addEventListener('click', (e) => {
+//     console.log(e.target);
+//     e.target.style.cssText = 'background: red;';    // применили стили при наведении  // получаем доступ к элементу
+// });
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// const styleElement = (e) => {
+//     console.log(e.target);
+//     e.target.style.cssText = 'background: red;';
+// };
+
+// btn.addEventListener('click', styleElement);                // так лучше
+// -----------------------------
+
+// const btn = document.querySelector('button');
+
+// let sss = 0;
+// const deletElement = (e) => {
+//     console.log(e.target);
+//     sss++;
+//     if (sss == 3 ) {                                        // вызовит функцию 3 раза (i)
+//         btn.removeEventListener('click', deletElement);   // затем удалит вызывалку
+//     }
+// };
+
+// btn.addEventListener('click', deletElement);
+// -----------------------------
+
+// Способы отменять стандартное поведение браузеров
+
+//  Первый
+
+// const link = document.querySelector('a');
+
+// link.addEventListener('click', function(event) {
+//     event.preventDefault();                          // отменит стандартное поведение
+//     //     ---------------                           // просто выведет в консоль
+//     console.log(event.target);                        
+// });
+// -----------------------------
+// метод перебора
+
+
+// const btns = document.querySelectorAll('button');
+
+// for (let i = 0; i < btns.length; i++) {        // используется редко
+//     btns[i].addEventListener('click', styleElement);
+// }
+
+
+
+
+// const styleElement = (e) => {
+//     console.log(e.target);
+//     e.target.style.cssText = 'background: red;';
+
+// const styleElement = (btn) => {
+//     console.log(btn.target);
+//     btn.target.style.cssText = 'background: red;';
+// };
+
+
+// let sss = 0;
+// const deletElement = (e) => {
+//     console.log(e.target);
+//     sss++;
+//     if (sss == 3 ) {                                        // вызовит функцию 3 раза (i)
+//         btn.removeEventListener('click', deletElement);   // затем удалит вызывалку
+//     }
+// };
+// btn.addEventListener('click', styleElement); 
+// -----------------------------
 
 
 
@@ -508,106 +1048,111 @@
 
 
 
-const personalMovieDB = {
-    count: 0,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false,
-    start: function () {
-        personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-
-        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-            personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-        }
-
-    },
-    rememberMyFilms: function () {
-        for (let i = 0; i < 2; i++) {
-            const a = prompt('Один из последних просмотренных фильмов?', ''),
-                b = prompt('На сколько оцените его?', '');
-            if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-                personalMovieDB.movies[a] = b;
-                console.log('done');
-            } else {
-                console.log('eror');
-                i--;
-            }
-
-        }
-    },
-    detectPersonalLevel: function () {
-        if (personalMovieDB.count < 10) {
-            console.log("Просмотрено довольно мало фильмов");
-        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-            console.log("Вы классический зритель");
-        } else if (personalMovieDB.count >= 30) {
-            console.log("Вы киноман");
-        } else {
-            console.log("Произошла ошибка");
-        }
-    },
-    showMyDB: function (hidden) {
-        if (!hidden) {
-            console.log(personalMovieDB);
-        }
-    },
-    toggleVisibleMyDB: function () {
-        if (personalMovieDB.privat) {
-            personalMovieDB.privat = false;
-        } else {
-            personalMovieDB.privat = true;
-        }
-    },
-    writeYourGenres: function () {
-        for (let i = 1; i <= 3; i++) {
-            let genres = prompt(`Ваш любимый жанр под номером ${i}`);
-
-            if (genres == '' || genres == null) {
-                console.log('некорректные данные');
-                i--;
-            } else {
-                personalMovieDB.genres[i - 1] = genres;
-            }
-        }
-
-        personalMovieDB.genres.forEach((item, i) => {
-            console.log(`Любиьый жанр ${i + 1} - это ${item}`);
-        });
-    }
-
-};
-
-
-
-for (let i = 0; i < 2; i++) {
-    const a = prompt('Один из последних просмотренных фильмов?', ''),
-        b = prompt('На сколько оцените его?', '');
-    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-        personalMovieDB.movies[a] = b;
-        console.log('done');
-    } else {
-        console.log('eror');
-        i--;
-    }
-
-}
 
 
 
 
 
-//////////////способ 1
+// const personalMovieDB = {
+//     count: 0,
+//     movies: {},
+//     actors: {},
+//     genres: [],
+//     privat: false,
+//     start: function () {
+//         personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-if (personalMovieDB.count < 10) {
-    console.log("Просмотрено довольно мало фильмов");
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    console.log("Вы классический зритель");
-} else if (personalMovieDB.count >= 30) {
-    console.log("Вы киноман");
-} else {
-    console.log("Произошла ошибка");
-}
+//         while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+//             personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+//         }
+
+//     },
+//     rememberMyFilms: function () {
+//         for (let i = 0; i < 2; i++) {
+//             const a = prompt('Один из последних просмотренных фильмов?', ''),
+//                 b = prompt('На сколько оцените его?', '');
+//             if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//                 personalMovieDB.movies[a] = b;
+//                 console.log('done');
+//             } else {
+//                 console.log('eror');
+//                 i--;
+//             }
+
+//         }
+//     },
+//     detectPersonalLevel: function () {
+//         if (personalMovieDB.count < 10) {
+//             console.log("Просмотрено довольно мало фильмов");
+//         } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+//             console.log("Вы классический зритель");
+//         } else if (personalMovieDB.count >= 30) {
+//             console.log("Вы киноман");
+//         } else {
+//             console.log("Произошла ошибка");
+//         }
+//     },
+//     showMyDB: function (hidden) {
+//         if (!hidden) {
+//             console.log(personalMovieDB);
+//         }
+//     },
+//     toggleVisibleMyDB: function () {
+//         if (personalMovieDB.privat) {
+//             personalMovieDB.privat = false;
+//         } else {
+//             personalMovieDB.privat = true;
+//         }
+//     },
+//     writeYourGenres: function () {
+//         for (let i = 1; i <= 3; i++) {
+//             let genres = prompt(`Ваш любимый жанр под номером ${i}`);
+
+//             if (genres == '' || genres == null) {
+//                 console.log('некорректные данные');
+//                 i--;
+//             } else {
+//                 personalMovieDB.genres[i - 1] = genres;
+//             }
+//         }
+
+//         personalMovieDB.genres.forEach((item, i) => {
+//             console.log(`Любиьый жанр ${i + 1} - это ${item}`);
+//         });
+//     }
+
+// };
+
+
+
+// for (let i = 0; i < 2; i++) {
+//     const a = prompt('Один из последних просмотренных фильмов?', ''),
+//         b = prompt('На сколько оцените его?', '');
+//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//         personalMovieDB.movies[a] = b;
+//         console.log('done');
+//     } else {
+//         console.log('eror');
+//         i--;
+//     }
+
+// }
+
+
+
+
+
+// //////////////способ 1
+
+// if (personalMovieDB.count < 10) {
+//     console.log("Просмотрено довольно мало фильмов");
+// } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+//     console.log("Вы классический зритель");
+// } else if (personalMovieDB.count >= 30) {
+//     console.log("Вы киноман");
+// } else {
+//     console.log("Произошла ошибка");
+// }
 
 
 
@@ -717,27 +1262,27 @@ if (personalMovieDB.count < 10) {
 //     console.log('Свойство ${key} имеет значение ${options[key]}');
 // }
 
-// обьект
-const option = {
-    name: 'test',
-    width: 1240,
-    height: 1240,
-    colors: {
-        bg: 'black',
-        border: 'red'
-    }
-};
-// console.log(option.colors.bg);
-for (let key in option) {
-    if (typeof (option[key]) === 'object') {
-        for (let i in option[key]) {
-            console.log(`Свойство ${i} имеет значение ${option[key][i]}`);
-        }
-    } else {
-        console.log(`Свойство ${key} имеет значение ${option[key]}`);
-    }
+// // обьект
+// const option = {
+//     name: 'test',
+//     width: 1240,
+//     height: 1240,
+//     colors: {
+//         bg: 'black',
+//         border: 'red'
+//     }
+// };
+// // console.log(option.colors.bg);
+// for (let key in option) {
+//     if (typeof (option[key]) === 'object') {
+//         for (let i in option[key]) {
+//             console.log(`Свойство ${i} имеет значение ${option[key][i]}`);
+//         }
+//     } else {
+//         console.log(`Свойство ${key} имеет значение ${option[key]}`);
+//     }
 
-}
+// }
 
 
 
@@ -1025,18 +1570,18 @@ for (let key in option) {
 
 ////////////////////////////
 
-let birdsPerDay = [2, 5, 0, 7, 4, 1, 3, 0, 2, 5, 0, 1, 3, 1];
+// let birdsPerDay = [2, 5, 0, 7, 4, 1, 3, 0, 2, 5, 0, 1, 3, 1];
 
-function totalBirdCount(birdsPerDay) {
-    let count = 0;
+// function totalBirdCount(birdsPerDay) {
+//     let count = 0;
 
-    for (let i = 0; i < birdsPerDay.length; i++) {
-        count += birdsPerDay[i];
-    }
-    return count;
-}
+//     for (let i = 0; i < birdsPerDay.length; i++) {
+//         count += birdsPerDay[i];
+//     }
+//     return count;
+// }
 
-console.log(totalBirdCount(birdsPerDay));
+// console.log(totalBirdCount(birdsPerDay));
 
 
 
@@ -1124,9 +1669,9 @@ console.log(totalBirdCount(birdsPerDay));
 // 
 
 
-const logg = "Hello world";
+// const logg = "Hello world";
 
-console.log(logg.slice(6, 1, 6));
+// console.log(logg.slice(6, 1, 6));
 
 
 
